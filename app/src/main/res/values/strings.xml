@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">BoaViagem</string>
+    <string name="app_name"> BoaViagem </string>
+    <string name="usuario"> Usuário: </string>
+    <string name="senha"> Senha: </string>
+    <string name="entrar"> Entrar </string>
+    <string name="erro_autenticacao"> Usuário ou senha inválidos! </string>
+    <string name="novo_gasto"> Novo Gasto </string>
+    <string name="nova_viagem"> Nova Viagem </string>
+    <string name="minhas_viagens"> Minhas Viagens </string>
+    <string name="configuracoes"> Configurações </string>
 </resources>
