@@ -15,12 +15,14 @@ public class BoaViagemActivity extends Activity {
     private EditText senha;
 
     @Override
-    public void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
         usuario = (EditText) findViewById(R.id.usuario);
+        usuario.setText("leitor");
         senha = (EditText) findViewById(R.id.senha);
+        senha.setText("123");
     }
 
     public void entrarOnClick(View v){
