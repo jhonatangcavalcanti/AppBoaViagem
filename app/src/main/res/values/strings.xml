@@ -18,4 +18,9 @@
     <string name="orcamento"> Orçamento </string>
     <string name="quantidade_de_pessoas"> Quantidade de pessoas </string>
     <string name="salvar" > Salvar </string>
+    <string name="criar_nova_viagem">Criar nova viagem</string>
+    <string name="data">Data</string>
+    <string name="descricao">Descrição</string>
+    <string name="gastei">Gastei!</string>
+    <string name="local">Local</string>
 </resources>

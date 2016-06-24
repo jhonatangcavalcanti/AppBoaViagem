@@ -15,9 +15,7 @@ public class ViagemActivity extends Activity {
         setContentView(R.layout.viagem);
     }
 
-    public void selecionarData(View v){
-
-    }
+    // TODO criar metodo selecionarData
 
     public void salvarViagem(View v){
 

@@ -27,6 +27,9 @@
         <activity android:name=".ViagemActivity" >
         </activity>
 
+        <activity android:name=".GastoActivity" >
+        </activity>
+
     </application>
 
 </manifest>

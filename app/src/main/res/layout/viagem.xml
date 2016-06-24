@@ -4,7 +4,6 @@
     android:layout_height="match_parent" >
 
     <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="0,1,2" >
@@ -59,7 +58,8 @@
 
             <TextView
                 android:layout_gravity="center"
-                android:text="@string/data_da_saida" />
+                android:text="@string/data_da_saida"
+                 />
         </TableRow>
 
         <TableRow>
@@ -72,7 +72,8 @@
             <Button
                 android:id="@+id/dataSaida"
                 android:onClick="selecionarData"
-                android:text="@string/selecione" />
+                android:text="@string/selecione"
+                 />
 
         </TableRow>
 
@@ -90,13 +91,13 @@
 
             <EditText
                 android:id="@+id/quantidadePessoas"
-                android:inputType="number"	/>
+                android:inputType="number" />
 
         </TableRow>
 
         <Button
             android:onClick="salvarViagem"
-            android:text="@string/salvar"	/>
+            android:text="@string/criar_nova_viagem"	/>
 
     </TableLayout>
 
