@@ -66,14 +66,13 @@
 
             <Button
                 android:id="@+id/dataChegada"
-                android:onClick="selecionarData"
-                android:text="@string/selecione"/>
+                android:onClick="selecionarDataViagem"
+                android:text="@string/selecione" />
 
             <Button
                 android:id="@+id/dataSaida"
-                android:onClick="selecionarData"
-                android:text="@string/selecione"
-                 />
+                android:onClick="selecionarDataViagem"
+                android:text="@string/selecione" />
 
         </TableRow>
 
