@@ -24,6 +24,23 @@
     <string name="gastei">Gastei!</string>
     <string name="local">Local</string>
     <string name="categoria">Categoria</string>
+    <string name="sair">Sair</string>
+    <string name="remover_viagem">Remover Viagem</string>
+    <string name="remover_gasto">Remover Gasto</string>
+    <string name="remover">Remover</string>
+    <string name="gastos_realizados">Gastos Realizados</string>
+    <string name="editar">Editar</string>
+    <string name="opcoes">Opções</string>
+    <string name="confirmacao_exclusao_viagem">Deseja realmente remover a viagem?</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="modo_viagem_sumario">Determina a viagem ativa com base na data atual</string>
+    <string name="modo_viagem">Modo Viagem</string>
+    <string name="preferencias">Preferências</string>
+    <string name="informe_valor_limite">Informe o valor limite (em %)</string>
+    <string name="valor_limite_sumario">Notifica quando os gastos ultrapassarem o percentual informado</string>
+    <string name="valor_limite">Alerta de gastos</string>
+    <string name="manter_conectado">Manter Conectado</string>
 
     <string-array name="categoria_gasto">
         <item>Alimentação</item>

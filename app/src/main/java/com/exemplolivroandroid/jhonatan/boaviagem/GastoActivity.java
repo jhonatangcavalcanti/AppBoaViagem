@@ -5,6 +5,9 @@ import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import java.util.Calendar;
+import java.util.zip.Inflater;
 
 /**
  * Created by jhonatan on 23/06/16. *
@@ -32,7 +36,7 @@ public class GastoActivity extends Activity {
         mes = calendar.get(Calendar.MONTH);
         dia = calendar.get(Calendar.DAY_OF_MONTH);
 
-        dataGasto = (Button) findViewById(R.id.data);
+        dataGasto = (Button) findViewById(R.id.dataGasto);
         dataGasto.setText(dia + "/" + (mes+1) + "/" + ano);
 
         /* Array Adapter atribuido ao spinner de categorias */
@@ -54,7 +58,7 @@ public class GastoActivity extends Activity {
 
     @Override
     protected Dialog onCreateDialog(int id){
-        if(R.id.data == id){
+        if(R.id.dataGasto == id){
             return new DatePickerDialog(this, listener, ano, mes, dia);
         }
         return null;
@@ -70,4 +74,19 @@ public class GastoActivity extends Activity {
         }
     };
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.gasto_menu, menu);
+        return true;
+
+        //return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onMenuItemSelected(int featureId, MenuItem item) {
+        finish(); /// TODO remover do bando de dados
+        return true;
+        //return super.onMenuItemSelected(featureId, item);
+    }
 }

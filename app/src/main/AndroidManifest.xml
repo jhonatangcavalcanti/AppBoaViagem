@@ -36,6 +36,9 @@
         <activity android:name=".GastoListActivity">
         </activity>
 
+        <activity android:name=".ConfiguracoesActivity">
+        </activity>
+
     </application>
 
 </manifest>

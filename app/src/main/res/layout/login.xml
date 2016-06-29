@@ -37,11 +37,19 @@
         android:layout_height="wrap_content"
         android:inputType="textPassword" />
 
+    <CheckBox
+        android:id="@+id/manterConectado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/manter_conectado"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:onClick="entrarOnClick"
         android:text="@string/entrar"/>
+
+
 
 </LinearLayout>

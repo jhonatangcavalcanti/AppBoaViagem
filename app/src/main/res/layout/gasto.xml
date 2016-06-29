@@ -70,7 +70,7 @@
                     android:inputType="numberDecimal"   />
 
                 <Button
-                    android:id="@+id/data"
+                    android:id="@+id/dataGasto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
