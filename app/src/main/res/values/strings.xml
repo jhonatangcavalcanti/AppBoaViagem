@@ -41,6 +41,8 @@
     <string name="valor_limite_sumario">Notifica quando os gastos ultrapassarem o percentual informado</string>
     <string name="valor_limite">Alerta de gastos</string>
     <string name="manter_conectado">Manter Conectado</string>
+    <string name="registro_salvo">Registro salvo com sucesso!</string>
+    <string name="erro_salvar">Erro ao salvar!</string>
 
     <string-array name="categoria_gasto">
         <item>Alimentação</item>

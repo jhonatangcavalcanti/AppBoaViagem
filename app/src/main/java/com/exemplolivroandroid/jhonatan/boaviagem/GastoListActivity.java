@@ -17,6 +17,10 @@ import android.widget.SimpleAdapter.ViewBinder;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.exemplolivroandroid.jhonatan.boaviagem.dao.BoaViagemDAO;
+import com.exemplolivroandroid.jhonatan.boaviagem.domain.Gasto;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,10 +34,16 @@ import java.util.Objects;
 public class GastoListActivity extends ListActivity implements OnItemClickListener{
     private List< Map<String, Object> > gastos;
     private String dataAnterior = "";
+    private BoaViagemDAO dao;
+    private SimpleDateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dao = new BoaViagemDAO(this);
+
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         String[] de = {"data", "descricao", "valor", "categoria"};
         int[] para = {R.id.dataListaGasto, R.id.descricao, R.id.valor, R.id.categoria};
@@ -50,6 +60,12 @@ public class GastoListActivity extends ListActivity implements OnItemClickListen
     }
 
     @Override
+    protected void onDestroy() {
+        dao.close();
+        super.onDestroy();
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Map<String, Object> map = gastos.get(position);
         String descricao = (String) map.get("descricao");
@@ -59,29 +75,34 @@ public class GastoListActivity extends ListActivity implements OnItemClickListen
     }
 
     private List<Map<String, Object>> listarGastos(){
+        Integer viagem_id = Integer.valueOf(getIntent().getStringExtra(Constantes.VIAGEM_ID));
+
         gastos = new ArrayList<>();
+        List<Gasto> gastos_viagem = dao.listarGastos(viagem_id);
+        for (Gasto gasto : gastos_viagem){
+            Map<String, Object> item = new HashMap<>();
 
-        Map<String, Object> item = new HashMap<>();
+            switch (gasto.getCategoria()){ // TODO - organizar constantes
+                case "Alimentação":
+                    item.put(DatabaseHelper.Gasto.CATEGORIA, R.color.categoria_alimentacao);
+                    break;
+                case "Transporte":
+                    item.put(DatabaseHelper.Gasto.CATEGORIA, R.color.categoria_transporte);
+                    break;
+                case "Hospedagem":
+                    item.put(DatabaseHelper.Gasto.CATEGORIA, R.color.categoria_hospedagem);
+                    break;
+                default: // outros
+                    item.put(DatabaseHelper.Gasto.CATEGORIA, R.color.categoria_outros);
+                    break;
+            }
+            item.put(DatabaseHelper.Gasto.VALOR, gasto.getValor());
+            item.put(DatabaseHelper.Gasto.DATA, dateFormat.format(gasto.getData()));
+            item.put(DatabaseHelper.Gasto.DESCRICAO, gasto.getDescricao());
+            item.put(DatabaseHelper.Gasto.LOCAL, gasto.getLocal());
 
-        item.put("data", "04/02/2012");
-        item.put("descricao", "Diária	Hotel");
-        item.put("valor", "R$	260,00");
-        item.put("categoria", R.color.categoria_hospedagem);
-        gastos.add(item);
-
-        item = new HashMap<>();
-        item.put("data", "26/06/2016");
-        item.put("descricao", "Cachorro Quente");
-        item.put("valor", "R$ 7,00");
-        item.put("categoria", R.color.categoria_alimentacao);
-        gastos.add(item);
-
-        item = new HashMap<>();
-        item.put("data", "26/06/2016");
-        item.put("descricao", "Guaravita");
-        item.put("valor", "R$ 2,00");
-        item.put("categoria", R.color.categoria_alimentacao);
-        gastos.add(item);
+            gastos.add(item);
+        }
 
         return gastos;
     }
