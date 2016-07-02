@@ -96,10 +96,12 @@ public class GastoListActivity extends ListActivity implements OnItemClickListen
                     item.put(DatabaseHelper.Gasto.CATEGORIA, R.color.categoria_outros);
                     break;
             }
-            item.put(DatabaseHelper.Gasto.VALOR, gasto.getValor());
+            item.put(DatabaseHelper.Gasto.VALOR, "R$ " + gasto.getValor());
             item.put(DatabaseHelper.Gasto.DATA, dateFormat.format(gasto.getData()));
             item.put(DatabaseHelper.Gasto.DESCRICAO, gasto.getDescricao());
             item.put(DatabaseHelper.Gasto.LOCAL, gasto.getLocal());
+            item.put(DatabaseHelper.Gasto._ID, gasto.getId());
+            item.put(DatabaseHelper.Gasto.VIAGEM_ID, gasto.getViagemID());
 
             gastos.add(item);
         }
@@ -145,10 +147,10 @@ public class GastoListActivity extends ListActivity implements OnItemClickListen
     public boolean onContextItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.remover){
             AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+            dao.removerGasto(Long.valueOf(gastos.get(info.position).get(DatabaseHelper.Gasto._ID).toString()));
             gastos.remove(info.position);
             getListView().invalidateViews();
             dataAnterior = "";
-            // TODO remover do banco de dados
             return true;
         }
 

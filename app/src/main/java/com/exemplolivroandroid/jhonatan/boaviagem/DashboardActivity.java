@@ -43,6 +43,10 @@ public class DashboardActivity extends Activity {
 
     }
 
+    public void abrirMenu(View view){
+        super.openOptionsMenu();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

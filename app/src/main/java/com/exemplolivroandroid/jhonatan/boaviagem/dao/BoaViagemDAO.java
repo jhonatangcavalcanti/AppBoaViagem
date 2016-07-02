@@ -64,6 +64,21 @@ public class BoaViagemDAO {
         return removidos > 0;
     }
 
+    public boolean removerViagem(Viagem viagem){
+        int removidos;
+        String whereClause = DatabaseHelper.Gasto.VIAGEM_ID + " = ?";
+        String[] whereArgs = new String[]{ viagem.getId().toString() };
+
+        // remover todos os gastos associados a viagem
+        getDb().delete(DatabaseHelper.Gasto.TABELA, whereClause, whereArgs);
+
+        // remover a viagem
+        whereClause = DatabaseHelper.Viagem._ID + " = ?";
+        removidos = getDb().delete(DatabaseHelper.Viagem.TABELA, whereClause, whereArgs);
+
+        return removidos > 0;
+    }
+
     public long inserir(Viagem viagem){
         ContentValues values = new ContentValues();
         values.put(DatabaseHelper.Viagem.DESTINO, viagem.getDestino());
@@ -113,8 +128,7 @@ public class BoaViagemDAO {
                                       null, null, null, null, null);
         List<Viagem> viagens = new ArrayList<>();
         while(cursor.moveToNext()) {
-            Viagem viagem = criarViagem(cursor);
-            viagens.add(viagem);
+            viagens.add( criarViagem(cursor) );
         }
         cursor.close();
         return viagens;
@@ -144,15 +158,14 @@ public class BoaViagemDAO {
     }
 
     public List<Gasto> listarGastos(Integer id){
-        String whereClause = DatabaseHelper.Gasto.VIAGEM_ID + " = ? ";
-        String[] whereArgs = new String[]{ id.toString() };
-
-        List<Gasto> gastos = new ArrayList<>();
+        String selection = DatabaseHelper.Gasto.VIAGEM_ID + " = ? ";
+        String[] selectionArgs = new String[]{ id.toString() };
 
         Cursor cursor = getDb().query(DatabaseHelper.Gasto.TABELA,
                                       DatabaseHelper.Gasto.COLUNAS,
-                                      whereClause, whereArgs, null, null, null);
-
+                                      selection, selectionArgs,
+                                      null, null, null);
+        List<Gasto> gastos = new ArrayList<>();
         while (cursor.moveToNext()){
             gastos.add(criaGasto(cursor));
         }
@@ -171,5 +184,19 @@ public class BoaViagemDAO {
         values.put(DatabaseHelper.Gasto.VIAGEM_ID, gasto.getViagemID());
 
         return getDb().insert(DatabaseHelper.Gasto.TABELA, null, values);
+    }
+
+    public long removerGasto(Gasto gasto){
+        String whereClause = gasto.getId() + " = ? ";
+        String[] whereArgs = new String[]{ gasto.getViagemID().toString() };
+
+        return getDb().delete(DatabaseHelper.Gasto.TABELA, whereClause, whereArgs);
+    }
+
+    public boolean removerGasto(Long id){
+        String whereClause = DatabaseHelper.Gasto._ID + " = ? ";
+        String[] whereArgs = new String[]{ id.toString() };
+
+        return getDb().delete(DatabaseHelper.Gasto.TABELA, whereClause, whereArgs) > 0;
     }
 }

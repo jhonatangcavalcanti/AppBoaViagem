@@ -43,6 +43,7 @@
     <string name="manter_conectado">Manter Conectado</string>
     <string name="registro_salvo">Registro salvo com sucesso!</string>
     <string name="erro_salvar">Erro ao salvar!</string>
+    <string name="menu">Menu</string>
 
     <string-array name="categoria_gasto">
         <item>Alimentação</item>
